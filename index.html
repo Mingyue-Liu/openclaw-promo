@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦞 OpenClaw - 你的 AI 超级助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            overflow-x: auto;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .lobster-mascot {
+            font-size: 80px;
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+        
+        .stats-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <section class="gradient-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full floating"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full floating" style="animation-delay: 1s;"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 py-20 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="lobster-mascot mb-8">🦞</div>
+                
+                <h1 class="text-6xl md:text-8xl font-black text-white mb-6 animate__animated animate__fadeInDown">
+                    OpenClaw
+                </h1>
+                
+                <p class="text-2xl md:text-3xl text-white/90 mb-8 animate__animated animate__fadeInUp">
+                    你的 AI 超级助手 · 让工作自动化 · 让效率起飞
+                </p>
+                
+                <div class="flex flex-col md:flex-row gap-4 justify-center items-center animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                    <a href="#setup" class="cta-button text-white px-8 py-4 rounded-full text-lg font-semibold inline-block">
+                        🚀 立即开始
+                    </a>
+                    <a href="#features" class="bg-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold inline-block hover:bg-white/30 transition">
+                        ✨ 了解功能
+                    </a>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-6 mt-16 max-w-2xl mx-auto">
+                    <div class="stats-card rounded-2xl p-6 text-white">
+                        <div class="text-4xl font-bold mb-2">14+</div>
+                        <div class="text-white/80">技能插件</div>
+                    </div>
+                    <div class="stats-card rounded-2xl p-6 text-white">
+                        <div class="text-4xl font-bold mb-2">24/7</div>
+                        <div class="text-white/80">全天候待命</div>
+                    </div>
+                    <div class="stats-card rounded-2xl p-6 text-white">
+                        <div class="text-4xl font-bold mb-2">10x</div>
+                        <div class="text-white/80">效率提升</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-8 h-8 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">为什么选择 OpenClaw?</span>
+                </h2>
+                <p class="text-xl text-gray-600">不只是 AI 助手，是你的工作效率加速器</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Feature 1 -->
+                <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <div class="feature-icon gradient-bg">🔌</div>
+                    <h3 class="text-2xl font-bold mb-4">技能插件系统</h3>
+                    <p class="text-gray-600">14+ 现成技能，从天气查询到文档总结，从新闻推送到视频生成，按需扩展</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <div class="feature-icon gradient-bg">⏰</div>
+                    <h3 class="text-2xl font-bold mb-4">定时任务自动化</h3>
+                    <p class="text-gray-600">设置每日早报、天气推送、新闻摘要，让 AI 按时为你工作</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <div class="feature-icon gradient-bg">🌐</div>
+                    <h3 class="text-2xl font-bold mb-4">网页搜索与总结</h3>
+                    <p class="text-gray-600">集成 Tavily 搜索，快速获取信息，AI 自动总结关键内容</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <div class="feature-icon gradient-bg">📱</div>
+                    <h3 class="text-2xl font-bold mb-4">多平台消息推送</h3>
+                    <p class="text-gray-600">支持钉钉、微信、Telegram 等，重要信息即时送达</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <div class="feature-icon gradient-bg">🎨</div>
+                    <h3 class="text-2xl font-bold mb-4">内容创作助手</h3>
+                    <p class="text-gray-600">写报告、做总结、生成图表，AI 帮你完成创意工作</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <div class="feature-icon gradient-bg">🔒</div>
+                    <h3 class="text-2xl font-bold mb-4">本地部署·隐私安全</h3>
+                    <p class="text-gray-600">完全本地运行，数据不出设备，安全可控</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">实际应用场景</span>
+                </h2>
+                <p class="text-xl text-gray-600">看看 OpenClaw 能帮你做什么</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- Use Case 1 -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg flex flex-col md:flex-row gap-6 items-start">
+                    <div class="text-6xl">📰</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3">每日自动早报</h3>
+                        <p class="text-gray-600 mb-4">每天早上 8 点自动推送天气 + AI/行业新闻到钉钉群，团队信息同步零成本</p>
+                        <div class="code-block text-green-400 text-sm">
+                            ✅ 已实现：长春/北京天气 + AI 新闻 + 汽车新闻
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Use Case 2 -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg flex flex-col md:flex-row gap-6 items-start">
+                    <div class="text-6xl">📊</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3">技术报告生成</h3>
+                        <p class="text-gray-600 mb-4">输入主题，AI 自动搜索、整理、生成专业报告，支持 Word/PDF 格式</p>
+                        <div class="code-block text-green-400 text-sm">
+                            ✅ 已实现：线控底盘技术报告（含 3 张专业图表）
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Use Case 3 -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg flex flex-col md:flex-row gap-6 items-start">
+                    <div class="text-6xl">🎬</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3">视频脚本生成</h3>
+                        <p class="text-gray-600 mb-4">输入目的地，自动生成旅游视频脚本、分镜、AI 绘画提示词</p>
+                        <div class="code-block text-green-400 text-sm">
+                            ✅ 已实现：榆树市旅游视频完整制作包
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Use Case 4 -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg flex flex-col md:flex-row gap-6 items-start">
+                    <div class="text-6xl">🔍</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3">技能市场搜索</h3>
+                        <p class="text-gray-600 mb-4">一键搜索 380+ OpenClaw 技能，查看评分、安装教程</p>
+                        <div class="code-block text-green-400 text-sm">
+                            ✅ 已实现：find-skill + skill-finder 双工具
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup Guide -->
+    <section id="setup" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">5 分钟快速开始</span>
+                </h2>
+                <p class="text-xl text-gray-600">简单 4 步，拥有你的 AI 助手</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Step 1 -->
+                <div class="flex gap-6 mb-12 relative">
+                    <div class="timeline-line"></div>
+                    <div class="step-number flex-shrink-0">1</div>
+                    <div class="bg-gray-50 rounded-2xl p-6 flex-1">
+                        <h3 class="text-2xl font-bold mb-4">安装 Node.js 和 pnpm</h3>
+                        <div class="code-block text-gray-300 text-sm mb-4">
+# 安装 Node.js (v18+)
+brew install node  # macOS
+# 或从 https://nodejs.org 下载
+
+# 安装 pnpm
+npm install -g pnpm
+                        </div>
+                        <p class="text-gray-600">确保 Node.js 版本 >= 18，pnpm 是更快的包管理器</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="flex gap-6 mb-12 relative">
+                    <div class="timeline-line"></div>
+                    <div class="step-number flex-shrink-0">2</div>
+                    <div class="bg-gray-50 rounded-2xl p-6 flex-1">
+                        <h3 class="text-2xl font-bold mb-4">安装 OpenClaw</h3>
+                        <div class="code-block text-gray-300 text-sm mb-4">
+# 安装 OpenClaw
+pnpm add -g openclaw
+
+# 验证安装
+openclaw --version
+                        </div>
+                        <p class="text-gray-600">全局安装 OpenClaw CLI 工具</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="flex gap-6 mb-12 relative">
+                    <div class="timeline-line"></div>
+                    <div class="step-number flex-shrink-0">3</div>
+                    <div class="bg-gray-50 rounded-2xl p-6 flex-1">
+                        <h3 class="text-2xl font-bold mb-4">配置 API Key</h3>
+                        <div class="code-block text-gray-300 text-sm mb-4">
+# 启动配置向导
+openclaw configure
+
+# 或手动配置模型
+# 推荐使用 Dashscope (通义千问)
+# https://dashscope.console.aliyun.com/
+                        </div>
+                        <p class="text-gray-600">配置 AI 模型 API Key，推荐使用阿里云 Dashscope（有免费额度）</p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="flex gap-6 relative">
+                    <div class="step-number flex-shrink-0">4</div>
+                    <div class="bg-gray-50 rounded-2xl p-6 flex-1">
+                        <h3 class="text-2xl font-bold mb-4">启动 Gateway 并开始使用</h3>
+                        <div class="code-block text-gray-300 text-sm mb-4">
+# 启动 Gateway 服务
+openclaw gateway start
+
+# 查看状态
+openclaw gateway status
+
+# 开始对话
+# 通过钉钉/微信/Telegram 或 Web 界面
+                        </div>
+                        <p class="text-gray-600">Gateway 启动后，你就可以通过消息或 Web 界面与 AI 交互了！</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Start Button -->
+            <div class="text-center mt-16">
+                <a href="https://github.com/openclaw/openclaw" target="_blank" class="cta-button text-white px-12 py-5 rounded-full text-xl font-semibold inline-block">
+                    📦 前往 GitHub 获取完整文档
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Tracker -->
+    <section id="tracker" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">团队使用追踪</span>
+                </h2>
+                <p class="text-xl text-gray-600">看看大家都在用 OpenClaw 做什么</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 shadow-lg">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-gray-200">
+                                <th class="text-left py-4 px-6 font-semibold">成员</th>
+                                <th class="text-left py-4 px-6 font-semibold">已安装技能</th>
+                                <th class="text-left py-4 px-6 font-semibold">使用场景</th>
+                                <th class="text-left py-4 px-6 font-semibold">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody id="team-table">
+                            <tr class="border-b border-gray-100">
+                                <td class="py-4 px-6">🦞 龙虾 (你)</td>
+                                <td class="py-4 px-6">14 个技能</td>
+                                <td class="py-4 px-6">日报推送、报告生成、视频脚本</td>
+                                <td class="py-4 px-6"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">✅ 已启用</span></td>
+                            </tr>
+                            <!-- 更多行由 JavaScript 动态生成 -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Add Member Form -->
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <h3 class="text-xl font-bold mb-4">加入团队追踪</h3>
+                    <form id="join-form" class="flex flex-col md:flex-row gap-4">
+                        <input type="text" id="member-name" placeholder="你的名字" class="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <input type="text" id="member-skills" placeholder="已安装技能数" class="w-32 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <input type="text" id="member-use" placeholder="使用场景" class="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <button type="submit" class="cta-button text-white px-6 py-3 rounded-xl font-semibold">
+                            加入
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="gradient-bg py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto">
+                <div class="lobster-mascot mb-6" style="font-size: 60px;">🦞</div>
+                <h2 class="text-5xl font-bold text-white mb-6">准备好了吗？</h2>
+                <p class="text-xl text-white/90 mb-8">
+                    让 OpenClaw 成为你的工作效率加速器，现在就开始！
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <a href="#setup" class="bg-white text-purple-600 px-8 py-4 rounded-full text-lg font-semibold inline-block hover:bg-gray-100 transition">
+                        🚀 立即开始
+                    </a>
+                    <a href="https://discord.gg/clawd" target="_blank" class="bg-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold inline-block hover:bg-white/30 transition">
+                        💬 加入社区
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-2xl font-bold">🦞 OpenClaw</span>
+                    <p class="text-gray-400 mt-2">你的 AI 超级助手</p>
+                </div>
+                <div class="flex gap-6">
+                    <a href="https://github.com/openclaw/openclaw" target="_blank" class="text-gray-400 hover:text-white transition">GitHub</a>
+                    <a href="https://docs.openclaw.ai" target="_blank" class="text-gray-400 hover:text-white transition">文档</a>
+                    <a href="https://discord.gg/clawd" target="_blank" class="text-gray-400 hover:text-white transition">Discord</a>
+                    <a href="https://clawhub.com" target="_blank" class="text-gray-400 hover:text-white transition">ClawHub</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>Made with ❤️ by OpenClaw Community</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Team Tracker - Local Storage
+        const teamData = [
+            { name: '🦞 龙虾', skills: '14 个技能', use: '日报推送、报告生成', status: '✅ 已启用' },
+        ];
+
+        // Load from localStorage
+        const saved = localStorage.getItem('openclaw-team');
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            teamData.push(...parsed);
+        }
+
+        // Render table
+        function renderTable() {
+            const tbody = document.getElementById('team-table');
+            tbody.innerHTML = teamData.map(member => `
+                <tr class="border-b border-gray-100">
+                    <td class="py-4 px-6">${member.name}</td>
+                    <td class="py-4 px-6">${member.skills}</td>
+                    <td class="py-4 px-6">${member.use}</td>
+                    <td class="py-4 px-6"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">${member.status}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        renderTable();
+
+        // Form submit
+        document.getElementById('join-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('member-name').value;
+            const skills = document.getElementById('member-skills').value;
+            const useCase = document.getElementById('member-use').value;
+            
+            if (name && skills && useCase) {
+                const newMember = {
+                    name: name,
+                    skills: skills + ' 技能',
+                    use: useCase,
+                    status: '✅ 已启用'
+                };
+                
+                teamData.push(newMember);
+                localStorage.setItem('openclaw-team', JSON.stringify(teamData));
+                renderTable();
+                
+                // Reset form
+                this.reset();
+                
+                // Show success message
+                alert('🎉 加入成功！欢迎加入 OpenClaw 大家庭！');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
